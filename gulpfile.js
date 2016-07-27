@@ -20,6 +20,7 @@ gulp.task('scripts', function() {
       //  .pipe(uglify())
         .pipe(gulp.dest(dest + 'js'));
 });
+
  // Compile CSS from Sass files
 gulp.task('sass', function() {
     return sass(src + 'scss/style.scss', {style: 'compressed'})
@@ -27,14 +28,13 @@ gulp.task('sass', function() {
         .pipe(gulp.dest(dest + 'css'))
         /* Reload the browser CSS after every change */
         .pipe(browserSync.reload({stream:true}));
-
 });
+
  gulp.task('images', function() {
   return gulp.src(src + 'images/**/*')
     .pipe(cache(imagemin({ optimizationLevel: 5, progressive: true, interlaced: true })))
     .pipe(gulp.dest(dest + 'img'));
 });
-
 
 /* Reload task */
 gulp.task('bs-reload', function () {
@@ -49,15 +49,11 @@ gulp.task('browser-sync', function() {
         */
       //  proxy: 'your_dev_site.url'
         /* For a static server you would use this: */
-        
         server: {
             baseDir: './'
         }
-        
     });
 });
-
-
 
 // Watch for changes in files
 gulp.task('watch', function() {
